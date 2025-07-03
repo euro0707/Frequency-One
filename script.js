@@ -4,6 +4,17 @@ const resultEl = document.getElementById("result");
 const codeEl = document.getElementById("code");
 const messageEl = document.getElementById("message");
 const shareBtn = document.getElementById("shareBtn");
+const letterEl = document.getElementById("letter");
+
+function animateLetter() {
+  if (!letterEl) return;
+  letterEl.classList.remove("hidden");
+  letterEl.classList.add("fly-in");
+  setTimeout(() => {
+    letterEl.classList.add("hidden");
+    letterEl.classList.remove("fly-in");
+  }, 1800);
+}
 
 const STORAGE_KEY = "frequencyOne_today";
 
@@ -22,7 +33,7 @@ function getTodayKey() {
   return `${STORAGE_KEY}_${today}`;
 }
 
-function showResult(item) {
+function showResult(item, playAudio = true) {
   codeEl.textContent = item.code;
   messageEl.textContent = item.message;
   // Change background based on color
@@ -45,7 +56,9 @@ function showResult(item) {
   }
   // fade to target color
   document.body.style.background = color;
-  playSound(item.sound);
+  if (playAudio) {
+    playSound(item.sound);
+  }
 
   // Prepare share link
   const text = encodeURIComponent(`${item.code}: ${item.message} #FrequencyOne`);
@@ -73,6 +86,8 @@ function hideResult() {
 }
 
 receiveBtn.addEventListener("click", async () => {
+  // play flying letter animation immediately
+  animateLetter();
   const noticeEl = document.getElementById("notice");
   const stored = localStorage.getItem(getTodayKey());
 
@@ -106,5 +121,5 @@ receiveBtn.addEventListener("click", async () => {
 // Auto-show if already stored today
 const todayStored = localStorage.getItem(getTodayKey());
 if (todayStored) {
-  showResult(JSON.parse(todayStored));
+  showResult(JSON.parse(todayStored), false);
 }

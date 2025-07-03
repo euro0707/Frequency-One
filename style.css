@@ -70,3 +70,35 @@ body {
 .hidden {
   display: none;
 }
+
+#letter {
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  width: 150px;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 10;
+}
+
+.fly-in {
+  animation: flyDown 1.8s ease-out forwards;
+}
+
+@keyframes flyDown {
+  0% {
+    top: -100px;
+    transform: translateX(-50%) rotate(-10deg);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(-50%) rotate(5deg);
+  }
+  100% {
+    top: 60%;
+    transform: translateX(-50%) rotate(0deg);
+    opacity: 1;
+  }
+}
