@@ -12,7 +12,9 @@ function playSound(src) {
   const audio = new Audio(src);
   audio.volume = 1;
   audio.currentTime = 0;
-  audio.play().catch((e) => console.warn("Audio play blocked:", e));
+  audio.play().catch((e) => {
+    console.warn("🔇 Audio play failed:", src, e);
+  });
 }
 
 function getTodayKey() {
@@ -76,6 +78,7 @@ receiveBtn.addEventListener("click", async () => {
 
   if (stored) {
     // already have today's message
+    hideResult();
     noticeEl.classList.remove("hidden");
     playSound("sound/hadou_chime.mp3");
     return;
@@ -94,7 +97,9 @@ receiveBtn.addEventListener("click", async () => {
     statusEl.classList.add("hidden");
     const item = await getRandomMessage();
     localStorage.setItem(getTodayKey(), JSON.stringify(item));
-    showResult(item);
+    setTimeout(() => {
+      showResult(item);
+    }, 1000);
     receiveBtn.disabled = false;
   }, 2000);
 });
