@@ -1,0 +1,12 @@
+# Dependency / build
+node_modules/
+.DS_Store
+*.log
+*.tmp
+*.cache
+
+# OS files
+Thumbs.db
+
+# vscode
+.vscode/
