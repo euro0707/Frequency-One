@@ -1,0 +1,26 @@
+[
+  {
+    "code": "Z-114",
+    "message": "魂が震える瞬間こそが、宇宙との“再同期”の証拠。",
+    "color": "紫",
+    "sound": "sound/hadou_purple.mp3"
+  },
+  {
+    "code": "R-042",
+    "message": "焦りとは、まだ“静寂”が追いついていない証拠。",
+    "color": "青",
+    "sound": "sound/hadou_blue.mp3"
+  },
+  {
+    "code": "K-220",
+    "message": "光が差す瞬間は、見失っていた道が再びつながる合図。",
+    "color": "金",
+    "sound": "sound/hadou_gold.mp3"
+  },
+  {
+    "code": "B-009",
+    "message": "静かすぎる夜は、深淵とつながる合図かもしれない。",
+    "color": "黒",
+    "sound": "sound/hadou_black.mp3"
+  }
+]
