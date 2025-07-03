@@ -61,6 +61,11 @@ body {
   max-width: 80vw;
 }
 
+.note {
+  font-size: 0.9rem;
+  opacity: 0.7;
+  margin-top: 1rem;
+}
 
 .hidden {
   display: none;

@@ -71,6 +71,18 @@ function hideResult() {
 }
 
 receiveBtn.addEventListener("click", async () => {
+  const noticeEl = document.getElementById("notice");
+  const stored = localStorage.getItem(getTodayKey());
+
+  if (stored) {
+    // already have today's message
+    noticeEl.classList.remove("hidden");
+    playSound("sound/hadou_chime.mp3");
+    return;
+  }
+
+  // hide notice if first time today
+  noticeEl.classList.add("hidden");
   receiveBtn.disabled = true;
   hideResult();
   statusEl.classList.remove("hidden");
@@ -80,14 +92,8 @@ receiveBtn.addEventListener("click", async () => {
 
   setTimeout(async () => {
     statusEl.classList.add("hidden");
-    const stored = localStorage.getItem(getTodayKey());
-    let item;
-    if (stored) {
-      item = JSON.parse(stored);
-    } else {
-      item = await getRandomMessage();
-      localStorage.setItem(getTodayKey(), JSON.stringify(item));
-    }
+    const item = await getRandomMessage();
+    localStorage.setItem(getTodayKey(), JSON.stringify(item));
     showResult(item);
     receiveBtn.disabled = false;
   }, 2000);
