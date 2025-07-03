@@ -93,13 +93,12 @@ receiveBtn.addEventListener("click", async () => {
   document.body.style.background = "#000000";
   playSound("sound/hadou_chime.mp3");
 
+  // ユーザー操作から 2 秒後にメッセージ表示と個別サウンド再生
   setTimeout(async () => {
-    statusEl.classList.add("hidden");
     const item = await getRandomMessage();
     localStorage.setItem(getTodayKey(), JSON.stringify(item));
-    setTimeout(() => {
-      showResult(item);
-    }, 1000);
+    statusEl.classList.add("hidden");
+    showResult(item); // showResult 内で item.sound を再生
     receiveBtn.disabled = false;
   }, 2000);
 });
